@@ -1,0 +1,14 @@
+{
+  "serverId": "com.docker/hub-mcp",
+  "date": "2026-08-11",
+  "metadata": {
+    "name": "Docker Hub MCP Server",
+    "description": "Official Docker Hub MCP server exposing repository search, tag lookup, namespace listing, and repository management tools backed by the Docker Hub API. Distributed as the mcp/dockerhub Docker image and used by Docker Desktop's Ask Gordon assistant."
+  },
+  "selfPublished": true,
+  "config": {
+    "type": "stdio",
+    "command": "docker",
+    "args": ["run", "-i", "--rm", "mcp/dockerhub", "--transport=stdio"]
+  }
+}
