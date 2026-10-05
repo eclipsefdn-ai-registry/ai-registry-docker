@@ -1,0 +1,8 @@
+{
+  "skillId": "io.github.docker",
+  "date": "2026-10-02",
+  "source": {
+    "url": "https://github.com/docker/skills.git",
+    "path": "skills/*"
+  }
+}

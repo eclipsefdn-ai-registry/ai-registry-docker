@@ -1,0 +1,13 @@
+{
+  "serverId": "com.docker/dhi-mcp",
+  "date": "2026-10-02",
+  "metadata": {
+    "name": "Docker Hardened Images MCP Server",
+    "description": "Official Docker Hardened Images (DHI) MCP server. Remote, streamable-HTTP server at https://dhi.io/mcp exposing the DHI catalog: repository search and details, tag definitions, per-digest image details, SBOMs, CVEs, attestations, and (with Docker Hub credentials) mirror management."
+  },
+  "selfPublished": true,
+  "config": {
+    "type": "streamable-http",
+    "url": "https://dhi.io/mcp"
+  }
+}
