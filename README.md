@@ -1,18 +1,22 @@
 # AI Registry — Docker (Inferred)
 
-> **Inferred vendor repository.** This repo is maintained by the [AI Registry](https://github.com/eclipsefdn-ai-registry/ai-registry-core) project, not by Docker. It pre-seeds the registry with an Agent Skill published by Docker at [github.com/docker/model-runner](https://github.com/docker/model-runner), plus the connection config for Docker's self-published Docker Hub MCP server.
+> **Inferred vendor repository.** This repo is maintained by the [AI Registry](https://github.com/eclipsefdn-ai-registry/ai-registry-core) project, not by Docker. It pre-seeds the registry with Agent Skills Docker publishes for its products, and with MCP servers Docker operates or ships.
 >
 > *This entry is based solely on information published through Docker's official public channels. Docker has not endorsed, approved or validated this listing, and is not necessarily participating in the AI Registry.*
 
 ## What this repo contains
 
-**Agent Skill:**
+**Agent Skills:**
 
+- All skills under `skills/*` in [docker/skills](https://github.com/docker/skills) — Docker's own Agent Skills catalog (12 skills as of 2026-10-20: Dockerfile and build strategies, Compose patterns, project foundations, Docker Sandboxes lifecycle, network and credentials, `sbxenv.yaml` and kits, Docker Agent config, run and deploy, a destructive-command guardrail, and `docker-docs` for answering from current Docker documentation). The repo's homepage is docs.docker.com/ai/skills/, and its README documents end-user installation (`npx skills add docker/skills`, `sbx skills add`, or a manual copy). The root `skills/` directory is canonical; `.agents/skills` and the per-tool `.claude-plugin`/`.codex-plugin`/`.cursor-plugin` wrappers are symlinks and adapters over it.
+- `create-kit-v3` and `migrate-kit-to-v3` from [docker/sandbox-kit-spec](https://github.com/docker/sandbox-kit-spec) — authoring and porting a Docker Sandbox Kit v3 descriptor with the released `docker buildx`, `sbx` and `kit-tck` tools. An explicit path list: the repo's third `SKILL.md` is sample data under `examples/`.
+- `kit-author` from [docker/sbx-kits-contrib](https://github.com/docker/sbx-kits-contrib) — authoring Docker Sandboxes kits (`spec.yaml`, lifecycle, composition, distribution), a feature Docker documents for every user at docs.docker.com/ai/sandboxes/customize/kits/. The repo is a collection of community-contributed kits, but it is owned directly by the verified `docker` org and linked from Docker's own docs. Only this skill is approved from it, not the kits.
 - `docker-model-runner` — the skill bundled inside the `docker/model-runner` CLI (`cmd/cli/commands/skills/docker-model-runner/SKILL.md`), installable by end users via `docker model skills --claude` (also `--codex`, `--opencode`, or `--dest`). This is a genuine first-party, externally-distributed skill: the CLI command explicitly copies it into `~/.claude/skills` and equivalents for other tools, not an internal dev-workflow file.
 
-**MCP server:**
+**MCP servers:**
 
 - **Docker Hub MCP Server** (`com.docker/hub-mcp`) — not listed in the official Anthropic/modelcontextprotocol.io registry, so this approval supplies its own `metadata` (fallback name/description) and a generic `config` instead of relying on registry lookup; `mcpRegistryVerified` will read `false`, which the schema treats as a warning, not a blocker. The config is the officially published stdio connection (`docker run -i --rm mcp/dockerhub --transport=stdio`) from the `mcp/dockerhub` Docker Hub image page, which is explicitly attributed to `docker` (Docker Inc.) and links back to [github.com/docker/hub-mcp](https://github.com/docker/hub-mcp) as its source. Marked `selfPublished: true` since Docker Inc. is both the image publisher and the source repo owner. (The full README also documents an authenticated variant with a `HUB_PAT_TOKEN` env var and a `--username` flag; this approval uses the simpler public-access-only invocation as the reusable, credential-free default.)
+- **Docker Hardened Images MCP Server** (`com.docker/dhi-mcp`) — a remote streamable-HTTP endpoint at `https://dhi.io/mcp` exposing the DHI catalog (repository search, tags, per-digest details, SBOMs, CVEs, attestations, and mirror management with Docker Hub credentials). Documented by Docker at docs.docker.com/dhi/tools/mcp/, which publishes the connection config used here. Not in the MCP registry, so `selfPublished: true`.
 
 **Agent Plugin — considered and excluded:**
 
@@ -26,7 +30,7 @@
 - `docker/mcp-obsidian` — a fork of a community Obsidian MCP server, not Docker's own work.
 - `docker/labs-ai-tools-for-devs` — explicitly deprecated in favor of the bundled MCP Toolkit (covered by the excluded plugin above).
 - `docker/docs`, `docker/docker-agent`, `docker/docker-agent-action`, `docker/mcp-gateway` `.agents/skills/*` / `.claude/skills/*` entries (e.g. `write`, `check-pr`, `triage-prs`, `bump-go-dependencies`, `otel-instrument`) — internal repo-maintenance automation skills Docker uses to manage those specific repos with their own dev-agent workflows, not published for external users to install.
-- `docker/sbx-kits-contrib` — explicitly a community repository, not first-party.
+- The kits in `docker/sbx-kits-contrib` — community-contributed, not first-party. Only the repo's `kit-author` skill is approved (see above).
 
 ## Documentation
 
