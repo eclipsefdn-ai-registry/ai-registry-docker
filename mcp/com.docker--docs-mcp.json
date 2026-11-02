@@ -1,0 +1,13 @@
+{
+  "serverId": "com.docker/docs-mcp",
+  "date": "2026-10-30",
+  "metadata": {
+    "name": "Docker Docs MCP Server",
+    "description": "Official Docker documentation MCP server. Remote, streamable-HTTP server at https://ai-backend-service.docker.com/mcp with no authentication, exposing one read-only tool, search_docker_docs, which searches docs.docker.com and returns content excerpts with source URLs for citation."
+  },
+  "selfPublished": true,
+  "config": {
+    "type": "streamable-http",
+    "url": "https://ai-backend-service.docker.com/mcp"
+  }
+}
