@@ -3,6 +3,6 @@
   "date": "2026-10-02",
   "source": {
     "url": "https://github.com/docker/sandbox-kit-spec.git",
-    "path": ["skills/create-kit-v3", "skills/migrate-kit-to-v3"]
+    "path": ["skills/create-kit-v3", "skills/migrate-kit-to-v3", "skills/sbxenv"]
   }
 }
